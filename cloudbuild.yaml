@@ -1,0 +1,25 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - build
+      - '--target=twenty'
+      - '-f'
+      - 'packages/twenty-docker/twenty/Dockerfile'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/twenty:${SHORT_SHA}'
+      - '-t'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/twenty:latest'
+      - '.'
+
+images:
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/twenty:${SHORT_SHA}'
+  - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO}/twenty:latest'
+
+substitutions:
+  _REGION: us-central1
+  _REPO: twenty-images
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: 3600s

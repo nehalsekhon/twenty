@@ -1530,20 +1530,29 @@ export const STANDARD_OBJECTS = {
           },
         },
         viewGroups: {
-          new: {
-            universalIdentifier: '20202020-af14-4a04-8a04-0aa0b2ca2bf1',
+          inquiry: {
+            universalIdentifier: 'b299605f-605c-4056-afc7-a51cc171d791',
           },
-          screening: {
-            universalIdentifier: '20202020-af14-4a04-8a04-0aa0b2ca2bf2',
+          consultation: {
+            universalIdentifier: '7116d647-57c3-495f-bc35-d294f809ec01',
           },
-          meeting: {
-            universalIdentifier: '20202020-af14-4a04-8a04-0aa0b2ca2bf3',
+          measurements: {
+            universalIdentifier: 'a070e2c2-63c6-43d5-99cf-16277ee9d6cd',
           },
-          proposal: {
-            universalIdentifier: '20202020-af14-4a04-8a04-0aa0b2ca2bf4',
+          quotation: {
+            universalIdentifier: '407172d0-d3df-4f3f-a6c3-883638d94fba',
           },
-          customer: {
-            universalIdentifier: '20202020-af14-4a04-8a04-0aa0b2ca2bf5',
+          orderConfirmed: {
+            universalIdentifier: 'e0dfb8a0-0f70-4c5b-bb19-7f1cb486d74c',
+          },
+          inProduction: {
+            universalIdentifier: '5e148bef-bc03-471e-85de-9d22e8aa3170',
+          },
+          orderReady: {
+            universalIdentifier: 'c8911e45-acf9-41d5-8fb6-2a3d9e1923ed',
+          },
+          installation: {
+            universalIdentifier: 'e2c25e44-f958-4dd2-8039-0ac33a116d55',
           },
         },
       },

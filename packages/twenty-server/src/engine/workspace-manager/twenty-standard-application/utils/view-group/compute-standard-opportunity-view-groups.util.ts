@@ -8,59 +8,92 @@ export const computeStandardOpportunityViewGroups = (
   args: Omit<CreateStandardViewGroupArgs<'opportunity'>, 'context'>,
 ): Record<string, FlatViewGroup> => {
   return {
-    byStageNew: createStandardViewGroupFlatMetadata({
+    byStageInquiry: createStandardViewGroupFlatMetadata({
       ...args,
       objectName: 'opportunity',
       context: {
         viewName: 'byStage',
-        viewGroupName: 'new',
+        viewGroupName: 'inquiry',
         isVisible: true,
-        fieldValue: 'NEW',
+        fieldValue: 'INQUIRY',
         position: 0,
       },
     }),
-    byStageScreening: createStandardViewGroupFlatMetadata({
+    byStageConsultation: createStandardViewGroupFlatMetadata({
       ...args,
       objectName: 'opportunity',
       context: {
         viewName: 'byStage',
-        viewGroupName: 'screening',
+        viewGroupName: 'consultation',
         isVisible: true,
-        fieldValue: 'SCREENING',
+        fieldValue: 'CONSULTATION',
         position: 1,
       },
     }),
-    byStageMeeting: createStandardViewGroupFlatMetadata({
+    byStageMeasurements: createStandardViewGroupFlatMetadata({
       ...args,
       objectName: 'opportunity',
       context: {
         viewName: 'byStage',
-        viewGroupName: 'meeting',
+        viewGroupName: 'measurements',
         isVisible: true,
-        fieldValue: 'MEETING',
+        fieldValue: 'MEASUREMENTS',
         position: 2,
       },
     }),
-    byStageProposal: createStandardViewGroupFlatMetadata({
+    byStageQuotation: createStandardViewGroupFlatMetadata({
       ...args,
       objectName: 'opportunity',
       context: {
         viewName: 'byStage',
-        viewGroupName: 'proposal',
+        viewGroupName: 'quotation',
         isVisible: true,
-        fieldValue: 'PROPOSAL',
+        fieldValue: 'QUOTATION',
         position: 3,
       },
     }),
-    byStageCustomer: createStandardViewGroupFlatMetadata({
+    byStageOrderConfirmed: createStandardViewGroupFlatMetadata({
       ...args,
       objectName: 'opportunity',
       context: {
         viewName: 'byStage',
-        viewGroupName: 'customer',
+        viewGroupName: 'orderConfirmed',
         isVisible: true,
-        fieldValue: 'CUSTOMER',
+        fieldValue: 'ORDER_CONFIRMED',
         position: 4,
+      },
+    }),
+    byStageInProduction: createStandardViewGroupFlatMetadata({
+      ...args,
+      objectName: 'opportunity',
+      context: {
+        viewName: 'byStage',
+        viewGroupName: 'inProduction',
+        isVisible: true,
+        fieldValue: 'IN_PRODUCTION',
+        position: 5,
+      },
+    }),
+    byStageOrderReady: createStandardViewGroupFlatMetadata({
+      ...args,
+      objectName: 'opportunity',
+      context: {
+        viewName: 'byStage',
+        viewGroupName: 'orderReady',
+        isVisible: true,
+        fieldValue: 'ORDER_READY',
+        position: 6,
+      },
+    }),
+    byStageInstallation: createStandardViewGroupFlatMetadata({
+      ...args,
+      objectName: 'opportunity',
+      context: {
+        viewName: 'byStage',
+        viewGroupName: 'installation',
+        isVisible: true,
+        fieldValue: 'INSTALLATION',
+        position: 7,
       },
     }),
   };

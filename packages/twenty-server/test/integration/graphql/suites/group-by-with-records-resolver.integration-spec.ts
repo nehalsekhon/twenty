@@ -78,7 +78,7 @@ describe('basic group-by with records', () => {
         gqlFields: OPPORTUNITY_GQL_FIELDS,
         data: {
           id: testOpportunityId1,
-          stage: 'NEW',
+          stage: 'INQUIRY',
           name: 'Opportunity 1',
           amount: { amountMicros: 1000000000000 }, // 1000
           companyId: testCompanyId1,
@@ -94,7 +94,7 @@ describe('basic group-by with records', () => {
         gqlFields: OPPORTUNITY_GQL_FIELDS,
         data: {
           id: testOpportunityId2,
-          stage: 'NEW',
+          stage: 'INQUIRY',
           name: 'Opportunity 2',
           amount: { amountMicros: 2000000000000 }, // 2000
           companyId: testCompanyId1,
@@ -110,7 +110,7 @@ describe('basic group-by with records', () => {
         gqlFields: OPPORTUNITY_GQL_FIELDS,
         data: {
           id: testOpportunityId3,
-          stage: 'NEW',
+          stage: 'INQUIRY',
           name: 'Opportunity 3',
           amount: { amountMicros: 3000000000000 }, // 3000
           companyId: testCompanyId2,
@@ -126,7 +126,7 @@ describe('basic group-by with records', () => {
         gqlFields: OPPORTUNITY_GQL_FIELDS,
         data: {
           id: testOpportunityId4,
-          stage: 'SCREENING',
+          stage: 'CONSULTATION',
           name: 'Opportunity 4',
           amount: { amountMicros: 4000000000000 }, // 4000
           companyId: testCompanyId2,
@@ -237,13 +237,13 @@ describe('basic group-by with records', () => {
     const wednesdayNewGroup = groups.find(
       (group: any) =>
         group.groupByDimensionValues.includes('Wednesday') &&
-        group.groupByDimensionValues.includes('NEW'),
+        group.groupByDimensionValues.includes('INQUIRY'),
     );
 
     expect(wednesdayNewGroup).toBeDefined();
     expect(wednesdayNewGroup.edges).toHaveLength(1);
     expect(wednesdayNewGroup.edges[0].node.name).toBe('Opportunity 1');
-    expect(wednesdayNewGroup.edges[0].node.stage).toBe('NEW');
+    expect(wednesdayNewGroup.edges[0].node.stage).toBe('INQUIRY');
     expect(wednesdayNewGroup.edges[0].node.amount.amountMicros).toBe(
       1000000000000,
     );
@@ -252,7 +252,7 @@ describe('basic group-by with records', () => {
     const thursdayNewGroup = groups.find(
       (group: any) =>
         group.groupByDimensionValues.includes('Thursday') &&
-        group.groupByDimensionValues.includes('NEW'),
+        group.groupByDimensionValues.includes('INQUIRY'),
     );
 
     expect(thursdayNewGroup).toBeDefined();
@@ -266,12 +266,12 @@ describe('basic group-by with records', () => {
     ).node;
 
     expect(opportunity2Edge.amount.amountMicros).toBe(2000000000000);
-    expect(opportunity2Edge.stage).toBe('NEW');
+    expect(opportunity2Edge.stage).toBe('INQUIRY');
     expect(opportunity2Edge.name).toBe('Opportunity 2');
     expect(opportunity2Edge.company.id).toBe(testCompanyId1);
     expect(opportunity2Edge.company.employees).toBe(COMPANY_1_EMPLOYEES);
     expect(opportunity3Edge.amount.amountMicros).toBe(3000000000000);
-    expect(opportunity3Edge.stage).toBe('NEW');
+    expect(opportunity3Edge.stage).toBe('INQUIRY');
     expect(opportunity3Edge.name).toBe('Opportunity 3');
     expect(opportunity3Edge.company.id).toBe(testCompanyId2);
     expect(opportunity3Edge.company.employees).toBe(COMPANY_2_EMPLOYEES);
@@ -279,7 +279,7 @@ describe('basic group-by with records', () => {
     const thursdayScreeningGroup = groups.find(
       (group: any) =>
         group.groupByDimensionValues.includes('Thursday') &&
-        group.groupByDimensionValues.includes('SCREENING'),
+        group.groupByDimensionValues.includes('CONSULTATION'),
     );
 
     expect(thursdayScreeningGroup).toBeDefined();
@@ -287,7 +287,7 @@ describe('basic group-by with records', () => {
     const opportunity4Edge = thursdayScreeningGroup.edges[0].node;
 
     expect(opportunity4Edge.amount.amountMicros).toBe(4000000000000);
-    expect(opportunity4Edge.stage).toBe('SCREENING');
+    expect(opportunity4Edge.stage).toBe('CONSULTATION');
     expect(opportunity4Edge.name).toBe('Opportunity 4');
     expect(opportunity4Edge.company.id).toBe(testCompanyId2);
     expect(opportunity4Edge.company.employees).toBe(COMPANY_2_EMPLOYEES);
@@ -340,7 +340,7 @@ describe('basic group-by with records', () => {
             ...FILTER_2020.and,
             {
               stage: {
-                eq: 'NEW',
+                eq: 'INQUIRY',
               },
             },
           ],
@@ -358,14 +358,14 @@ describe('basic group-by with records', () => {
     const wednesdayNewGroup = groups.find(
       (group: any) =>
         group.groupByDimensionValues.includes('Wednesday') &&
-        group.groupByDimensionValues.includes('NEW'),
+        group.groupByDimensionValues.includes('INQUIRY'),
     );
 
     expect(wednesdayNewGroup.groupByDimensionValues).toHaveLength(2);
-    expect(wednesdayNewGroup.groupByDimensionValues).toContain('NEW');
+    expect(wednesdayNewGroup.groupByDimensionValues).toContain('INQUIRY');
     expect(wednesdayNewGroup.groupByDimensionValues).toContain('Wednesday');
     expect(wednesdayNewGroup.edges).toHaveLength(1);
-    expect(wednesdayNewGroup.edges[0].node.stage).toBe('NEW');
+    expect(wednesdayNewGroup.edges[0].node.stage).toBe('INQUIRY');
     expect(wednesdayNewGroup.edges[0].node.amount.amountMicros).toBe(
       1000000000000,
     );
@@ -373,11 +373,11 @@ describe('basic group-by with records', () => {
     const thursdayNewGroup = groups.find(
       (group: any) =>
         group.groupByDimensionValues.includes('Thursday') &&
-        group.groupByDimensionValues.includes('NEW'),
+        group.groupByDimensionValues.includes('INQUIRY'),
     );
 
     expect(thursdayNewGroup.groupByDimensionValues).toHaveLength(2);
-    expect(thursdayNewGroup.groupByDimensionValues).toContain('NEW');
+    expect(thursdayNewGroup.groupByDimensionValues).toContain('INQUIRY');
     expect(thursdayNewGroup.groupByDimensionValues).toContain('Thursday');
     expect(thursdayNewGroup.edges).toHaveLength(2);
   });
@@ -440,14 +440,14 @@ describe('basic group-by with records', () => {
       ).node;
 
     expect(opportunity1Edge.name).toBe('Opportunity 1');
-    expect(opportunity1Edge.stage).toBe('NEW');
+    expect(opportunity1Edge.stage).toBe('INQUIRY');
     const opportunity2Edge =
       company1Group.edges[0].node.opportunities.edges.find(
         (edge: any) => edge.node.name === 'Opportunity 2',
       ).node;
 
     expect(opportunity2Edge.name).toBe('Opportunity 2');
-    expect(opportunity2Edge.stage).toBe('NEW');
+    expect(opportunity2Edge.stage).toBe('INQUIRY');
 
     const company2Group = groups.find((group: any) =>
       group.groupByDimensionValues.includes(COMPANY_2_EMPLOYEES),
@@ -463,14 +463,14 @@ describe('basic group-by with records', () => {
       ).node;
 
     expect(opportunity3Edge.name).toBe('Opportunity 3');
-    expect(opportunity3Edge.stage).toBe('NEW');
+    expect(opportunity3Edge.stage).toBe('INQUIRY');
     const opportunity4Edge =
       company2Group.edges[0].node.opportunities.edges.find(
         (edge: any) => edge.node.name === 'Opportunity 4',
       ).node;
 
     expect(opportunity4Edge.name).toBe('Opportunity 4');
-    expect(opportunity4Edge.stage).toBe('SCREENING');
+    expect(opportunity4Edge.stage).toBe('CONSULTATION');
   });
 
   describe('order by for records', () => {
@@ -535,7 +535,7 @@ describe('basic group-by with records', () => {
       const thursdayNewGroup = groups.find(
         (group: any) =>
           group.groupByDimensionValues.includes('Thursday') &&
-          group.groupByDimensionValues.includes('NEW'),
+          group.groupByDimensionValues.includes('INQUIRY'),
       );
 
       expect(thursdayNewGroup).toBeDefined();
@@ -557,7 +557,7 @@ describe('basic group-by with records', () => {
       const thursdayNewGroup = groups.find(
         (group: any) =>
           group.groupByDimensionValues.includes('Thursday') &&
-          group.groupByDimensionValues.includes('NEW'),
+          group.groupByDimensionValues.includes('INQUIRY'),
       );
 
       expect(thursdayNewGroup).toBeDefined();
@@ -620,7 +620,7 @@ describe('basic group-by with records', () => {
       const groups = response.body.data.opportunitiesGroupBy;
 
       const newGroup = groups.find((group: any) =>
-        group.groupByDimensionValues.includes('NEW'),
+        group.groupByDimensionValues.includes('INQUIRY'),
       );
 
       expect(newGroup).toBeDefined();
@@ -687,7 +687,7 @@ describe('basic group-by with records', () => {
       const groups = response.body.data.opportunitiesGroupBy;
 
       const newGroup = groups.find((group: any) =>
-        group.groupByDimensionValues.includes('NEW'),
+        group.groupByDimensionValues.includes('INQUIRY'),
       );
 
       expect(newGroup).toBeDefined();
